@@ -13,11 +13,8 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Build Docker Image
-      run: docker build -t my-ping-app ./docker-gs-ping
-
     - name: Run Docker Container
-      run: docker run -d --name my-ping-container my-ping-app
+      run: docker run -d --name my-ping-container docker-ping
 
     - name: Ping Command
       run: docker exec my-ping-container ping example.com -c 4 # Remplacez example.com par l'adresse que vous souhaitez pinger

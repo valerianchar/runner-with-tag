@@ -12,12 +12,14 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-
-    - name: Run Docker Container
-      run: docker run -d --name my-ping-container docker-ping
+    - name: Login to Docker Hub 
+      uses: docker/login-action@v3 
+      with:
+          username: valerian.charrier@gmail.com
+          password: 8v42O@576
 
     - name: Ping Command
-      run: docker exec my-ping-container ping example.com -c 4 # Remplacez example.com par l'adresse que vous souhaitez pinger
+      run: docker exec my-ping-container ping localhost -c 4 
 
     - name: Stop and Remove Containers
       run: docker stop my-ping-container && docker rm my-ping-container

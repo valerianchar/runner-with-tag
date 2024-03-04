@@ -3,9 +3,9 @@ services:
   worker:
     image: myoung34/github-runner:latest
     environment:
-      REPO_URL: https://github.com/valerianchar/cour_ci_cd
+      REPO_URL: https://github.com/valerianchar/runner-with-tag
       RUNNER_NAME: ci_cd_charrier_papazian
-      RUNNER_TOKEN: AWNTMRNYUBQHHE6GEXZMJU3FZ47QG
+      RUNNER_TOKEN: AWNTMRJF734X3YNVG65OTADF4WOUG
       RUNNER_WORKDIR: /actions_runners
       RUNNER_GROUP: default
       RUNNER_SCOPE: 'repo'

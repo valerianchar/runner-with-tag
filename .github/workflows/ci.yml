@@ -1,0 +1,31 @@
+name: PHP Web CI
+
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Build Docker Image
+      run: docker build -t my-ping-app ./docker-gs-ping
+
+    - name: Run Docker Container
+      run: docker run -d --name my-ping-container my-ping-app
+
+    - name: Ping Command
+      run: docker exec my-ping-container ping example.com -c 4 # Remplacez example.com par l'adresse que vous souhaitez pinger
+
+    - name: Stop and Remove Containers
+      run: docker stop my-ping-container && docker rm my-ping-container
+
+    - name: Remove Docker Image
+      run: docker rmi my-ping-app

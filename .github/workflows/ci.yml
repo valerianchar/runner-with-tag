@@ -18,11 +18,14 @@ jobs:
           username: valerian.charrier@gmail.com
           password: 8v42O@576
 
+    - name: Build Docker Image
+      run: docker build -t my-ping-app ./docker-gs # Assurez-vous que ce chemin est correct
+    
+    - name: Run Docker Container
+      run: docker run -d --name my-ping-container my-ping-app
+    
     - name: Ping Command
-      run: docker exec my-ping-container ping localhost -c 4 
+      run: docker exec my-ping-container curl localhost:8080 # Remplacez example.com par l'adresse que vous souhaitez pinger
 
-    - name: Stop and Remove Containers
+    - name: Stop and Remove Container
       run: docker stop my-ping-container && docker rm my-ping-container
-
-    - name: Remove Docker Image
-      run: docker rmi my-ping-app
